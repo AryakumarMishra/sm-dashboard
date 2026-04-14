@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDG Scorecard Dashboard - Infosys 2023-24</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">
+                        <i data-lucide="globe"></i>
+                    </div>
+                    <div class="title">
+                        <h1>SDG Scorecard Dashboard</h1>
+                        <p>Infosys Sustainability Report 2023-24</p>
+                    </div>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-pill">
+                        <span class="stat-value" id="overall-score">78.4</span>
+                        <span class="stat-label">Overall Score</span>
+                    </div>
+                    <div class="stat-pill trend-up">
+                        <i data-lucide="trending-up"></i>
+                        <span>+12% vs LY</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Summary Cards -->
+            <section class="summary-cards">
+                <div class="card">
+                    <div class="card-icon bg-green">
+                        <i data-lucide="target"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Active Goals</h3>
+                        <p class="card-value">17</p>
+                        <span class="card-change positive">All on track</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon bg-blue">
+                        <i data-lucide="activity"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>KPIs Tracked</h3>
+                        <p class="card-value">142</p>
+                        <span class="card-change positive">+8 new this year</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon bg-purple">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Lives Impacted</h3>
+                        <p class="card-value">2.4M</p>
+                        <span class="card-change positive">+18% vs LY</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon bg-orange">
+                        <i data-lucide="leaf"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Carbon Neutral</h3>
+                        <p class="card-value">Scope 1&2</p>
+                        <span class="card-change positive">Since 2022</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SDG Grid -->
+            <section class="sdg-section">
+                <div class="section-header">
+                    <h2>SDG Performance Overview</h2>
+                    <div class="filters">
+                        <button class="filter-btn active">All Goals</button>
+                        <button class="filter-btn">High Priority</button>
+                        <button class="filter-btn">Improving</button>
+                        <button class="filter-btn">Needs Focus</button>
+                    </div>
+                </div>
+                <div class="sdg-grid" id="sdg-grid">
+                    <!-- SDG cards will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="charts-section">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Progress Trend</h3>
+                        <select class="chart-select">
+                            <option>Last 5 Years</option>
+                            <option>Last 3 Years</option>
+                            <option>Year to Date</option>
+                        </select>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="trendChart"></canvas>
+                        <div class="chart-overlay">
+                            <div class="trend-line"></div>
+                            <div class="data-points">
+                                <div class="point" style="left: 10%; bottom: 45%"></div>
+                                <div class="point" style="left: 30%; bottom: 52%"></div>
+                                <div class="point" style="left: 50%; bottom: 58%"></div>
+                                <div class="point" style="left: 70%; bottom: 68%"></div>
+                                <div class="point highlight" style="left: 90%; bottom: 78%"></div>
+                            </div>
+                        </div>
+                        <div class="chart-labels">
+                            <span>2019-20</span>
+                            <span>2020-21</span>
+                            <span>2021-22</span>
+                            <span>2022-23</span>
+                            <span>2023-24</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Focus Areas Distribution</h3>
+                    </div>
+                    <div class="donut-chart-container">
+                        <div class="donut-chart">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="donut-bg" cx="50" cy="50" r="40"/>
+                                <circle class="donut-segment education" cx="50" cy="50" r="40"/>
+                                <circle class="donut-segment climate" cx="50" cy="50" r="40"/>
+                                <circle class="donut-segment health" cx="50" cy="50" r="40"/>
+                                <circle class="donut-segment equality" cx="50" cy="50" r="40"/>
+                            </svg>
+                            <div class="donut-center">
+                                <span class="donut-value">5</span>
+                                <span class="donut-label">Key Areas</span>
+                            </div>
+                        </div>
+                        <div class="donut-legend">
+                            <div class="legend-item">
+                                <span class="legend-color education"></span>
+                                <span class="legend-label">Education (28%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color climate"></span>
+                                <span class="legend-label">Climate Action (24%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color health"></span>
+                                <span class="legend-label">Health (22%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color equality"></span>
+                                <span class="legend-label">Gender Equality (16%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color other"></span>
+                                <span class="legend-label">Others (10%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Initiatives -->
+            <section class="initiatives-section">
+                <div class="section-header">
+                    <h2>Key Initiatives 2023-24</h2>
+                    <a href="#" class="view-all">View All <i data-lucide="arrow-right"></i></a>
+                </div>
+                <div class="initiatives-grid">
+                    <div class="initiative-card">
+                        <div class="initiative-image">
+                            <div class="placeholder-img bg-gradient-1">
+                                <i data-lucide="graduation-cap"></i>
+                            </div>
+                        </div>
+                        <div class="initiative-content">
+                            <div class="initiative-tags">
+                                <span class="tag sdg-4">SDG 4</span>
+                                <span class="tag">Education</span>
+                            </div>
+                            <h4>Digital Literacy Program</h4>
+                            <p>Trained 450,000 students in digital skills across 2,500 schools in rural India.</p>
+                            <div class="initiative-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">450K</span>
+                                    <span class="metric-label">Students</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">2.5K</span>
+                                    <span class="metric-label">Schools</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="initiative-card">
+                        <div class="initiative-image">
+                            <div class="placeholder-img bg-gradient-2">
+                                <i data-lucide="trees"></i>
+                            </div>
+                        </div>
+                        <div class="initiative-content">
+                            <div class="initiative-tags">
+                                <span class="tag sdg-13">SDG 13</span>
+                                <span class="tag">Environment</span>
+                            </div>
+                            <h4>Carbon Neutral Operations</h4>
+                            <p>Achieved carbon neutrality for Scope 1 & 2 emissions through renewable energy and offsets.</p>
+                            <div class="initiative-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">100%</span>
+                                    <span class="metric-label">Renewable</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">46MW</span>
+                                    <span class="metric-label">Solar Capacity</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="initiative-card">
+                        <div class="initiative-image">
+                            <div class="placeholder-img bg-gradient-3">
+                                <i data-lucide="heart-pulse"></i>
+                            </div>
+                        </div>
+                        <div class="initiative-content">
+                            <div class="initiative-tags">
+                                <span class="tag sdg-3">SDG 3</span>
+                                <span class="tag">Healthcare</span>
+                            </div>
+                            <h4>Health for All</h4>
+                            <p>Provided free healthcare services to 1.2 million underserved community members.</p>
+                            <div class="initiative-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">1.2M</span>
+                                    <span class="metric-label">Beneficiaries</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">850+</span>
+                                    <span class="metric-label">Camps</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Regional Impact -->
+            <section class="impact-section">
+                <div class="section-header">
+                    <h2>Regional Impact</h2>
+                </div>
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <div class="impact-region">
+                            <i data-lucide="map-pin"></i>
+                            <span>India</span>
+                        </div>
+                        <div class="impact-stats">
+                            <div class="impact-stat">
+                                <span class="impact-value">1.8M</span>
+                                <span class="impact-label">Lives Impacted</span>
+                            </div>
+                            <div class="impact-bar">
+                                <div class="impact-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-region">
+                            <i data-lucide="map-pin"></i>
+                            <span>Americas</span>
+                        </div>
+                        <div class="impact-stats">
+                            <div class="impact-stat">
+                                <span class="impact-value">320K</span>
+                                <span class="impact-label">Lives Impacted</span>
+                            </div>
+                            <div class="impact-bar">
+                                <div class="impact-progress" style="width: 45%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-region">
+                            <i data-lucide="map-pin"></i>
+                            <span>Europe</span>
+                        </div>
+                        <div class="impact-stats">
+                            <div class="impact-stat">
+                                <span class="impact-value">180K</span>
+                                <span class="impact-label">Lives Impacted</span>
+                            </div>
+                            <div class="impact-bar">
+                                <div class="impact-progress" style="width: 35%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-region">
+                            <i data-lucide="map-pin"></i>
+                            <span>APAC</span>
+                        </div>
+                        <div class="impact-stats">
+                            <div class="impact-stat">
+                                <span class="impact-value">100K</span>
+                                <span class="impact-label">Lives Impacted</span>
+                            </div>
+                            <div class="impact-bar">
+                                <div class="impact-progress" style="width: 25%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2024 Infosys Limited. Sustainability Data as of FY 2023-24.</p>
+                <div class="footer-links">
+                    <a href="#">Download Report</a>
+                    <a href="#">Methodology</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // SDG Data
+        const sdgData = [
+            { id: 1, name: "No Poverty", color: "#E5243B", score: 82, icon: "coins", trend: "up" },
+            { id: 2, name: "Zero Hunger", color: "#DDA63A", score: 76, icon: "utensils", trend: "up" },
+            { id: 3, name: "Good Health", color: "#4C9F38", score: 88, icon: "heart-pulse", trend: "up" },
+            { id: 4, name: "Quality Education", color: "#C5192D", score: 92, icon: "graduation-cap", trend: "up" },
+            { id: 5, name: "Gender Equality", color: "#FF3A21", score: 85, icon: "users", trend: "stable" },
+            { id: 6, name: "Clean Water", color: "#26BDE2", score: 79, icon: "droplets", trend: "up" },
+            { id: 7, name: "Clean Energy", color: "#FCC30B", score: 95, icon: "zap", trend: "up" },
+            { id: 8, name: "Decent Work", color: "#A21942", score: 87, icon: "briefcase", trend: "stable" },
+            { id: 9, name: "Innovation", color: "#FD6925", score: 91, icon: "cpu", trend: "up" },
+            { id: 10, name: "Reduced Inequalities", color: "#DD1367", score: 74, icon: "scale", trend: "up" },
+            { id: 11, name: "Sustainable Cities", color: "#FD9D24", score: 81, icon: "building-2", trend: "stable" },
+            { id: 12, name: "Responsible Consumption", color: "#BF8B2E", score: 83, icon: "refresh-cw", trend: "up" },
+            { id: 13, name: "Climate Action", color: "#3F7E44", score: 89, icon: "cloud-sun", trend: "up" },
+            { id: 14, name: "Life Below Water", color: "#0A97D9", score: 68, icon: "waves", trend: "stable" },
+            { id: 15, name: "Life on Land", color: "#56C02B", score: 72, icon: "trees", trend: "up" },
+            { id: 16, name: "Peace & Justice", color: "#00689D", score: 86, icon: "shield", trend: "stable" },
+            { id: 17, name: "Partnerships", color: "#19486A", score: 90, icon: "handshake", trend: "up" }
+        ];
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Populate SDG Grid
+        const sdgGrid = document.getElementById('sdg-grid');
+        sdgData.forEach(sdg => {
+            const card = document.createElement('div');
+            card.className = 'sdg-card';
+            card.style.setProperty('--sdg-color', sdg.color);
+            card.innerHTML = `
+                <div class="sdg-header" style="background: ${sdg.color}">
+                    <div class="sdg-number">${sdg.id}</div>
+                    <i data-lucide="${sdg.icon}" class="sdg-icon"></i>
+                </div>
+                <div class="sdg-content">
+                    <h4>${sdg.name}</h4>
+                    <div class="sdg-score">
+                        <div class="score-bar">
+                            <div class="score-progress" style="width: ${sdg.score}%; background: ${sdg.color}"></div>
+                        </div>
+                        <span class="score-value">${sdg.score}%</span>
+                    </div>
+                    <div class="sdg-trend ${sdg.trend}">
+                        <i data-lucide="trending-${sdg.trend === 'up' ? 'up' : 'right'}"></i>
+                        <span>${sdg.trend === 'up' ? 'Improving' : 'Stable'}</span>
+                    </div>
+                </div>
+            `;
+            sdgGrid.appendChild(card);
+        });
+
+        // Re-initialize Lucide icons for dynamically added content
+        lucide.createIcons();
+
+        // Animate numbers on load
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            const range = end - start;
+            const minTimer = 50;
+            let stepTime = Math.abs(Math.floor(duration / range));
+            stepTime = Math.max(stepTime, minTimer);
+            let startTime = new Date().getTime();
+            let endTime = startTime + duration;
+            let timer;
+
+            function run() {
+                let now = new Date().getTime();
+                let remaining = Math.max((endTime - now) / duration, 0);
+                let value = Math.round(end - (remaining * range));
+                obj.innerHTML = value;
+                if (value == end) {
+                    clearInterval(timer);
+                    obj.innerHTML = end.toFixed(1);
+                }
+            }
+            timer = setInterval(run, stepTime);
+            run();
+        }
+
+        // Animate overall score
+        setTimeout(() => {
+            animateValue("overall-score", 0, 78.4, 1500);
+        }, 300);
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Animate progress bars on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.score-progress, .impact-progress').forEach(bar => {
+            observer.observe(bar);
+        });
+    </script>
+</body>
+</html>
